@@ -1,0 +1,46 @@
+{
+  "name": "@webinmove/kosa",
+  "version": "1.0.0",
+  "description": "Custom error class to help handle errors at different level with aligned behaviors",
+  "main": "src/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "LOG_LEVEL=fatal mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webinmove/kosa.git"
+  },
+  "keywords": [
+    "error",
+    "errors"
+  ],
+  "author": "@webinmove",
+  "contributors": [
+    "Olivier Cuypers <oliviercuyp@gmail.com>",
+    "Louis Borsu <sat@satprod.net>"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/webinmove/kosa/issues"
+  },
+  "homepage": "https://github.com/webinmove/kosa#readme",
+  "semistandard": {
+    "globals": [
+      "describe",
+      "it",
+      "before",
+      "after"
+    ],
+    "ignore": "dist"
+  },
+  "devDependencies": {
+    "chai": "4.0.0",
+    "mocha": "7.2.0",
+    "mocha-standard": "1.0.0",
+    "semistandard": "11.0.0",
+    "snazzy": "7.0.0"
+  }
+}
