@@ -37,7 +37,7 @@ Here are the constructor arguments:
 Here is how you use it in your code.
 
 ```js
-const Kosa = require('kosa');
+const Kosa = require('@webinmove/kosa');
 
 if (!user) {
   throw new Kosa('USER', 404);
