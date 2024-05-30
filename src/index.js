@@ -36,7 +36,7 @@ class Kosa {
       this.message = status;
     }
 
-    this.meta = meta || null;
+    this.meta = meta || {};
   }
 }
 // Can't use extends, since then it must use super() in constructor,
