@@ -15,7 +15,7 @@ const validCodes = Object.keys(statusCodeMap).map(Number);
 const util = require('util');
 
 class Kosa {
-  constructor (scope, statusCode, validations) {
+  constructor (scope, statusCode, meta) {
 
     if (statusCode) {
       this.statusCode = Number(statusCode);
@@ -36,7 +36,7 @@ class Kosa {
       this.message = status;
     }
 
-    this.validations = validations || null;
+    this.meta = meta || {};
   }
 }
 // Can't use extends, since then it must use super() in constructor,

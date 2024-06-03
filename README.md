@@ -14,15 +14,23 @@ It is designed to be and stay simple !!!
 {
   statusCode: 400,
   message: 'USER_REGISTER_BAD_REQUEST', // Comes from scope & status
-  validations: [ // Optional
-    {
-      field: 'email',
-      message: 'missing tld'
-    }, {
-      field: 'firstname',
-      message: 'should start with a capital'
-    }
-  ];
+  meta: { // Optional - contextual information
+    error: '...',
+    context: '...',
+    details: {
+      ...
+    },
+    validations: [
+      {
+        field: 'email',
+        message: 'missing tld'
+      }, {
+        field: 'firstname',
+        message: 'should start with a capital'
+      }
+    ]
+    ...
+  }
 }
 ```
 
@@ -32,7 +40,7 @@ Here are the constructor arguments:
 
 1. `scope` required string
 2. `statusCode` optional number
-3. `validations` optional array with validations errors from validators
+3. `meta` optional object with contextual information you might want to provide about the error
 
 Here is how you use it in your code.
 
