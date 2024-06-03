@@ -1,6 +1,6 @@
 {
   "name": "@webinmove/kosa",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Custom error class to help handle errors at different level with aligned behaviors",
   "main": "src/index.js",
   "directories": {
