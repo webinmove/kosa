@@ -12,38 +12,31 @@ const statusCodeMap = {
   500: 'INTERNAL_SERVER_ERROR'
 };
 const validCodes = Object.keys(statusCodeMap).map(Number);
-const util = require('util');
 
-class Kosa {
-  constructor (scope, statusCode, meta) {
 
-    if (statusCode) {
-      this.statusCode = Number(statusCode);
-    } else {
-      this.statusCode = 500;
-    }
+export default class Kosa extends Error {  
+  constructor(scope, statusCode, meta) {
 
-    if (validCodes.indexOf(this.statusCode) === -1) {
-      // Throw a real error to have a stacktrace
+    super();
+    Object.setPrototypeOf(this, Kosa.prototype);
+    this.name = 'Kosa';
+
+    const normalizedCode = Number(statusCode || 500);
+    if (!validCodes.includes(normalizedCode)) {
       throw new Error('MANAGED_ERROR_INVALID_CODE');
     }
 
+    this.statusCode = normalizedCode;
     const status = statusCodeMap[this.statusCode];
-
-    if (scope) {
-      this.message = [ scope, status ].join('_');
-    } else {
-      this.message = status;
-    }
-
+    this.message = scope ? `${scope}_${status}` : status;
     this.meta = meta || {};
+
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, this.constructor);
+    }
   }
 }
-// Can't use extends, since then it must use super() in constructor,
-// which create a stacktrace
-util.inherits(Kosa, Error);
 
-module.exports = Kosa;
 
 // All codes (not only errors) from:
 // https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
