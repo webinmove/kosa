@@ -24,7 +24,8 @@ It is designed to be and stay simple !!!
       {
         field: 'email',
         message: 'missing tld'
-      }, {
+      }, 
+      {
         field: 'firstname',
         message: 'should start with a capital'
       }

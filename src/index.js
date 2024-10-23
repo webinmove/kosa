@@ -1,3 +1,5 @@
+import { inherits } from 'inherits-ex';
+
 const statusCodeMap = {
   400: 'BAD_REQUEST',
   401: 'UNAUTHORIZED',
@@ -12,11 +14,9 @@ const statusCodeMap = {
   500: 'INTERNAL_SERVER_ERROR'
 };
 const validCodes = Object.keys(statusCodeMap).map(Number);
-const util = require('util');
 
-class Kosa {
+export default class Kosa {
   constructor (scope, statusCode, meta) {
-
     if (statusCode) {
       this.statusCode = Number(statusCode);
     } else {
@@ -31,7 +31,7 @@ class Kosa {
     const status = statusCodeMap[this.statusCode];
 
     if (scope) {
-      this.message = [ scope, status ].join('_');
+      this.message = [scope, status].join('_');
     } else {
       this.message = status;
     }
@@ -41,9 +41,7 @@ class Kosa {
 }
 // Can't use extends, since then it must use super() in constructor,
 // which create a stacktrace
-util.inherits(Kosa, Error);
-
-module.exports = Kosa;
+inherits(Kosa, Error);
 
 // All codes (not only errors) from:
 // https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
