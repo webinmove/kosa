@@ -49,5 +49,8 @@
     "rollup": "^4.24.0",
     "semistandard": "11.0.0",
     "snazzy": "7.0.0"
+  },
+  "dependencies": {
+    "inherits-ex": "^2.1.0"
   }
 }

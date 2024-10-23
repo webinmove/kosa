@@ -1,3 +1,5 @@
+import { inherits } from "inherits-ex"
+
 const statusCodeMap = {
   400: 'BAD_REQUEST',
   401: 'UNAUTHORIZED',
@@ -13,29 +15,35 @@ const statusCodeMap = {
 };
 const validCodes = Object.keys(statusCodeMap).map(Number);
 
+export default class Kosa {
+  constructor (scope, statusCode, meta) {
 
-export default class Kosa extends Error {  
-  constructor(scope, statusCode, meta) {
+    if (statusCode) {
+      this.statusCode = Number(statusCode);
+    } else {
+      this.statusCode = 500;
+    }
 
-    super();
-    Object.setPrototypeOf(this, Kosa.prototype);
-    this.name = 'Kosa';
-
-    const normalizedCode = Number(statusCode || 500);
-    if (!validCodes.includes(normalizedCode)) {
+    if (validCodes.indexOf(this.statusCode) === -1) {
+      // Throw a real error to have a stacktrace
       throw new Error('MANAGED_ERROR_INVALID_CODE');
     }
 
-    this.statusCode = normalizedCode;
     const status = statusCodeMap[this.statusCode];
-    this.message = scope ? `${scope}_${status}` : status;
-    this.meta = meta || {};
 
-    if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, this.constructor);
+    if (scope) {
+      this.message = [ scope, status ].join('_');
+    } else {
+      this.message = status;
     }
+
+    this.meta = meta || {};
   }
 }
+// Can't use extends, since then it must use super() in constructor,
+// which create a stacktrace
+inherits(Kosa, Error);
+
 
 
 // All codes (not only errors) from:

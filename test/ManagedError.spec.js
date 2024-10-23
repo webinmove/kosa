@@ -1,5 +1,5 @@
-const chai = require('chai');
-const Kosa = require('../src/index');
+import chai from "chai";
+import Kosa from "../src/index.js"
 const expect = chai.expect;
 
 describe('Kosa', () => {
@@ -28,9 +28,10 @@ describe('Kosa', () => {
     return expect(error.message).equal('INTERNAL_SERVER_ERROR');
   });
 
-  it('default validations to null', () => {
+  it('default meta to empty object', () => {
     const error = new Kosa('OOPS');
-    return expect(error.validations).is.null;
+    expect(error.meta).to.be.an('object');
+    return expect(Object.keys(error.meta)).to.have.lengthOf(0);
   });
 
   it('has validations property', () => {
@@ -43,8 +44,8 @@ describe('Kosa', () => {
         message: 'should start with a capital'
       }
     ];
-    const error = new Kosa('OOPS', 400, validations);
-    return expect(error.validations).deep.equal(validations);
+    const error = new Kosa('OOPS', 400, { validations });
+    return expect(error.meta.validations).deep.equal(validations);
   });
 
   it('error on invalid status code', () => {
