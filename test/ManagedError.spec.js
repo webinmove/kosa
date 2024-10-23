@@ -1,5 +1,5 @@
-import chai from "chai";
-import Kosa from "../src/index.js"
+import chai from 'chai';
+import Kosa from '../src/index.js';
 const expect = chai.expect;
 
 describe('Kosa', () => {

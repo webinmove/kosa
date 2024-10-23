@@ -15,7 +15,7 @@ declare class Kosa extends Error {
      */
     constructor(
         scope: string,
-        statusCode?: StatusCode | number,
+        statusCode?: number,
         meta?: ErrorMeta
     );
 

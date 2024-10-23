@@ -6,5 +6,5 @@ export default {
   }, {
     format: 'esm',
     file: './dist/index.mjs'
-  }],
+  }]
 };

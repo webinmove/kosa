@@ -1,4 +1,4 @@
-import { inherits } from "inherits-ex"
+import { inherits } from 'inherits-ex';
 
 const statusCodeMap = {
   400: 'BAD_REQUEST',
@@ -17,7 +17,6 @@ const validCodes = Object.keys(statusCodeMap).map(Number);
 
 export default class Kosa {
   constructor (scope, statusCode, meta) {
-
     if (statusCode) {
       this.statusCode = Number(statusCode);
     } else {
@@ -32,7 +31,7 @@ export default class Kosa {
     const status = statusCodeMap[this.statusCode];
 
     if (scope) {
-      this.message = [ scope, status ].join('_');
+      this.message = [scope, status].join('_');
     } else {
       this.message = status;
     }
@@ -43,8 +42,6 @@ export default class Kosa {
 // Can't use extends, since then it must use super() in constructor,
 // which create a stacktrace
 inherits(Kosa, Error);
-
-
 
 // All codes (not only errors) from:
 // https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
