@@ -4,7 +4,8 @@
   "description": "Custom error class to help handle errors at different level with aligned behaviors",
   "type": "module",
   "directories": {
-    "test": "test"
+    "test": "test",
+    "dist": "dist"
   },
   "scripts": {
     "build": "rollup --config --bundleConfigAsCjs",
